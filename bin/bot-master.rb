@@ -18,7 +18,7 @@ end
 bot = Cinch::Bot.new do
   configure do |c|
 
-    c.server = "irc.rizon.net"
+    c.server = "irc.iiens.net"
     c.channels = ["#git-tutal"]
     c.nick   = "GitMaster"
     c.plugins.plugins = modules << Cinch::Plugins::Identify
