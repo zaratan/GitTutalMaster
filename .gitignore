@@ -1,3 +1,7 @@
+*.swp
+*.swo
+*.swm
+*.swn
 *.gem
 *.rbc
 .bundle
