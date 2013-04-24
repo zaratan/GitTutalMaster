@@ -1,19 +1,39 @@
+# -*- encoding : utf-8 -*-
 class SuperModule
   include Cinch::Plugin
 
   def voice_if_all_true (m)
-    host = m.user.host
+    m.channel.voice(m.user) 
+    username = m.user.user
     m.channel.users.each {|u| p u}
     m.channel.users.each do |u|
       user = u[0]
       if !user.kind_of? Cinch::Bot
-        m.channel.voice(user) if user.host == host
+        m.channel.voice(user) if user.user == username
       end
     end
   end
 
+  KickMessages=[
+    "Problems?",
+    "I guess you failed.",
+    "One kick to rule them all.",
+    "TRY! MOAR!",
+    "TRY! AGAIN!",
+    "Please... don't make me do that again.",
+    "Kyaaaaa~~~ ♥",
+    "I secretly hope that somebody will succed... one day...",
+    "Oops... I did it again!",
+    "Missclic... I wanted to voice you",
+    "With all Zaratan's love",
+    "Say hello to Skelz0r for me",
+    "42",
+    "If Skelz0r was a punk he would love you... wait... he is a punk!",
+    "Zaratan likes to lose time on stupid features"
+  ]
+
   def kick_if_false (m)
-    Channel('#git-tutal').kick(m.user,"Problems?")
+    Channel('#git-tutal').kick(m.user,KickMessages[Random.rand(KickMessages.size)])
   end
 
   def execute(m)
@@ -72,6 +92,14 @@ class SuperModule
         @timer[m.user.user].delete(name)
       end
     end
+
+  def fake_join
+    User("Linael").send("!j #git-tutal")
+  end
+
+  def fake_part
+    User("Linael").send("!part #git-tutal")
+  end
 
   def initialize blu
     @result=Hash.new
